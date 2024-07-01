@@ -45,15 +45,15 @@
 
     <h1>Dress Design Tool</h1>
     <div class="design-container" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <img id="dress" src="https://i.imgur.com/Zn0LO8r.png" alt="White Long Sleeved Dress" class="dress-image">
-        <img id="embroidery1" src="https://i.imgur.com/Zm8RGyN.png" class="embroidery" style="top: 50px; left: 110px;" draggable="true" ondragstart="drag(event)">
-        <img id="embroidery2" src="https://i.imgur.com/MB4NeTP.png" class="embroidery" style="top: 200px; left: 110px;" draggable="true" ondragstart="drag(event)">
+        <img id="dress" src="https://example-images.s3.amazonaws.com/white-dress.png" alt="White Long Sleeved Dress" class="dress-image">
+        <img id="embroidery1" src="https://example-images.s3.amazonaws.com/embroidery1.png" class="embroidery" style="top: 50px; left: 110px;" draggable="true" ondragstart="drag(event)">
+        <img id="embroidery2" src="https://example-images.s3.amazonaws.com/embroidery2.png" class="embroidery" style="top: 200px; left: 110px;" draggable="true" ondragstart="drag(event)">
     </div>
 
     <div class="controls">
         <h2>Select Embroidery</h2>
-        <img src="https://i.imgur.com/Zm8RGyN.png" alt="Embroidery 1" class="embroidery-option" onclick="addEmbroidery('https://i.imgur.com/Zm8RGyN.png')">
-        <img src="https://i.imgur.com/MB4NeTP.png" alt="Embroidery 2" class="embroidery-option" onclick="addEmbroidery('https://i.imgur.com/MB4NeTP.png')">
+        <img src="https://example-images.s3.amazonaws.com/embroidery1.png" alt="Embroidery 1" class="embroidery-option" onclick="addEmbroidery('https://example-images.s3.amazonaws.com/embroidery1.png')">
+        <img src="https://example-images.s3.amazonaws.com/embroidery2.png" alt="Embroidery 2" class="embroidery-option" onclick="addEmbroidery('https://example-images.s3.amazonaws.com/embroidery2.png')">
         <button onclick="clearEmbroidery()">Clear Embroidery</button>
     </div>
 
