@@ -45,15 +45,13 @@
 
     <h1>Dress Design Tool</h1>
     <div class="design-container" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <img id="dress" src="https://example-images.s3.amazonaws.com/white-dress.png" alt="White Long Sleeved Dress" class="dress-image">
-        <img id="embroidery1" src="https://example-images.s3.amazonaws.com/embroidery1.png" class="embroidery" style="top: 50px; left: 110px;" draggable="true" ondragstart="drag(event)">
-        <img id="embroidery2" src="https://example-images.s3.amazonaws.com/embroidery2.png" class="embroidery" style="top: 200px; left: 110px;" draggable="true" ondragstart="drag(event)">
+        <img id="dress" src="https://lh3.googleusercontent.com/pw/ACtC-3cCKvvsuQmepxstZRT02lTExH0jDlT5Ls8D4AKIM4OATybqOXJXbdodR9I6g-8V6NnhAY5XFOp0kHwojFfD2xhGiYBS1kPbFGesbGnYubDw2n6SHHwE=w2400" alt="White Long Sleeved Dress" class="dress-image">
+        <img id="embroidery1" src="https://lh3.googleusercontent.com/pw/ACtC-3f5ThO_GAWIse_B1J9SDouAWC30H00E8doVsX5hNm23GyFaWV0kLCTQ9nQvQnBtt8lvFTzOn9GHLz7ApHEUzJ0X92ZITBSeRsKjLP_3uJr6ZW_zT_8=w2400" class="embroidery" style="top: 50px; left: 110px;" draggable="true" ondragstart="drag(event)">
     </div>
 
     <div class="controls">
         <h2>Select Embroidery</h2>
-        <img src="https://example-images.s3.amazonaws.com/embroidery1.png" alt="Embroidery 1" class="embroidery-option" onclick="addEmbroidery('https://example-images.s3.amazonaws.com/embroidery1.png')">
-        <img src="https://example-images.s3.amazonaws.com/embroidery2.png" alt="Embroidery 2" class="embroidery-option" onclick="addEmbroidery('https://example-images.s3.amazonaws.com/embroidery2.png')">
+        <img src="https://lh3.googleusercontent.com/pw/ACtC-3f5ThO_GAWIse_B1J9SDouAWC30H00E8doVsX5hNm23GyFaWV0kLCTQ9nQvQnBtt8lvFTzOn9GHLz7ApHEUzJ0X92ZITBSeRsKjLP_3uJr6ZW_zT_8=w2400" alt="Embroidery 1" class="embroidery-option" onclick="addEmbroidery('https://lh3.googleusercontent.com/pw/ACtC-3f5ThO_GAWIse_B1J9SDouAWC30H00E8doVsX5hNm23GyFaWV0kLCTQ9nQvQnBtt8lvFTzOn9GHLz7ApHEUzJ0X92ZITBSeRsKjLP_3uJr6ZW_zT_8=w2400')">
         <button onclick="clearEmbroidery()">Clear Embroidery</button>
     </div>
 
@@ -90,7 +88,7 @@
             let container = document.querySelector('.design-container');
             let embroideries = container.querySelectorAll('.embroidery');
             embroideries.forEach(embroidery => {
-                if (embroidery.id !== 'embroidery1' && embroidery.id !== 'embroidery2') {
+                if (embroidery.id !== 'embroidery1') {
                     container.removeChild(embroidery);
                 }
             });
