@@ -4,9 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kerkoud Fatma's Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Montserrat:wght@400&display=swap" rel="stylesheet">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    /* Keyframes for animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* CSS for sections */
     body {
       font-family: 'Montserrat', sans-serif;
       background-color: #FFA726; /* Radiant Orange */
@@ -18,14 +29,12 @@
       background-color: #FFB74D; /* Yellow wave */
       padding: 20px;
       text-align: center;
-    }
-    header h1 {
-      font-family: 'Barlow Condensed', sans-serif;
-      margin: 0;
+      animation: fadeIn 0.8s ease-out; /* Example of fading in */
     }
     nav {
       background-color: #FF7043; /* Darker Orange */
       padding: 10px;
+      animation: fadeIn 0.8s ease-out; /* Example of fading in */
     }
     nav ul {
       list-style: none;
@@ -47,6 +56,7 @@
       background-color: #FFCC80; /* Lighter Yellow */
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.5s ease-out; /* Example of fading in */
     }
     section h2 {
       font-family: 'Barlow Condensed', sans-serif;
@@ -71,29 +81,85 @@
     }
     .story-content {
       display: none;
+      padding: 10px;
+      background-color: white;
+      color: black;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    .story-content p {
+      margin-top: 10px;
+    }
+    .split-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .split-container .left-side,
+    .split-container .right-side {
+      width: 48%;
+    }
+    .split-container .left-side img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .split-container .right-side {
+      background-color: black;
+      color: white;
+      padding: 20px;
+      border-radius: 5px;
     }
     footer {
       background-color: #FF7043;
       text-align: center;
       padding: 10px;
       margin-top: 20px;
+      animation: fadeIn 0.8s ease-out; /* Example of fading in */
     }
     @media (max-width: 768px) {
       nav ul {
         flex-direction: column;
         align-items: center;
       }
+      .split-container {
+        flex-direction: column;
+      }
+      .split-container .left-side,
+      .split-container .right-side {
+        width: 100%;
+        margin-bottom: 20px;
+      }
     }
   </style>
   <script>
-    function toggleContent(section) {
-      const content = document.getElementById(section);
-      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    function toggleContent(sectionId) {
+      // Hide all sections
+      var sections = document.querySelectorAll('.content-toggle');
+      sections.forEach(function(section) {
+        section.style.display = 'none';
+      });
+
+      // Display selected section
+      var selectedSection = document.getElementById(sectionId);
+      if (selectedSection) {
+        selectedSection.style.display = 'block';
+      }
     }
 
     function toggleStoryContent(storyId) {
-      const storyContent = document.getElementById(storyId);
-      storyContent.style.display = storyContent.style.display === 'block' ? 'none' : 'block';
+      // Hide all story contents
+      var storyContents = document.querySelectorAll('.story-content');
+      storyContents.forEach(function(content) {
+        content.style.display = 'none';
+      });
+
+      // Display selected story content
+      var selectedStory = document.getElementById(storyId);
+      if (selectedStory) {
+        selectedStory.style.display = 'block';
+      }
     }
   </script>
 </head>
@@ -114,41 +180,19 @@
       <div class="sub-section">
         <h3>Stories</h3>
         <ul>
-          <li><a href="javascript:void(0)" onclick="toggleStoryContent('story1')">Story Title 1</a></li>
-          <li><a href="javascript:void(0)" onclick="toggleStoryContent('story2')">Story Title 2</a></li>
-          <li><a href="javascript:void(0)" onclick="toggleStoryContent('story3')">Story Title 3</a></li>
+          <li><a href="javascript:void(0)" onclick="toggleStoryContent('love-shadow')">Love's Shadow</a></li>
         </ul>
-        <div id="story1" class="story-content">
-          <h4>Story Title 1</h4>
-          <img src="path/to/story1-image.jpg" alt="Story 1 Image">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel sapien sit amet dolor viverra facilisis.</p>
-        </div>
-        <div id="story2" class="story-content">
-          <h4>Story Title 2</h4>
-          <img src="path/to/story2-image.jpg" alt="Story 2 Image">
-          <p>Phasellus euismod mi in sem tincidunt, ut consectetur nisl aliquam. Vivamus at augue id odio vulputate feugiat.</p>
-        </div>
-        <div id="story3" class="story-content">
-          <h4>Story Title 3</h4>
-          <img src="path/to/story3-image.jpg" alt="Story 3 Image">
-          <p>Praesent convallis orci in elit fringilla, sit amet vehicula nunc vehicula. Sed vel magna eget nunc ornare ultrices.</p>
-        </div>
-      </div>
-      <div class="sub-section">
-        <h3>Poems</h3>
-        <ul>
-          <li><a href="javascript:void(0)" onclick="toggleStoryContent('poem1')">Poem Title 1</a></li>
-          <li><a href="javascript:void(0)" onclick="toggleStoryContent('poem2')">Poem Title 2</a></li>
-        </ul>
-        <div id="poem1" class="story-content">
-          <h4>Poem Title 1</h4>
-          <img src="path/to/poem1-image.jpg" alt="Poem 1 Image">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel sapien sit amet dolor viverra facilisis.</p>
-        </div>
-        <div id="poem2" class="story-content">
-          <h4>Poem Title 2</h4>
-          <img src="path/to/poem2-image.jpg" alt="Poem 2 Image">
-          <p>Phasellus euismod mi in sem tincidunt, ut consectetur nisl aliquam. Vivamus at augue id odio vulputate feugiat.</p>
+        <div id="love-shadow" class="story-content">
+          <div class="split-container">
+            <div class="left-side">
+              <img src="path/to/pastry-girl-image.jpg" alt="Pastry Girl Image">
+            </div>
+            <div class="right-side">
+              <h4>Love's Shadow</h4>
+              <p>In the small, fog-covered town of hometown, where the cobblestone streets were perpetually damp and the air carried a chill even in the summer, a young woman named Eliza lived in an ivy-clad cottage on the outskirts...</p>
+              <!-- Add more paragraphs as needed -->
+            </div>
+          </div>
         </div>
       </div>
     </section>
