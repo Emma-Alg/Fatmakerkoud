@@ -1,82 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Music Rhythm Generator</title>
-<style>
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    flex-direction: column;
-  }
-  button {
-    font-size: 18px;
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-bottom: 20px;
-  }
-  .download-link {
-    margin-top: 20px;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dress Design Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+        .design-container {
+            position: relative;
+            width: 300px;
+            height: 500px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        .dress-image {
+            width: 100%;
+            height: auto;
+        }
+        .embroidery {
+            position: absolute;
+            width: 80px;
+            height: auto;
+            cursor: pointer;
+        }
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .embroidery-option {
+            cursor: pointer;
+            margin: 5px;
+            width: 80px;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-<button onclick="addBeat('piano')">Add Piano Beat</button>
-<button onclick="addBeat('violin')">Add Violin Beat</button>
-<button onclick="generateRhythm()">Generate Rhythm</button>
 
-<audio id="piano">
-  <source src="https://www.soundjay.com/button/beep-07.wav" type="audio/wav">
-  Your browser does not support the audio element.
-</audio>
+    <h1>Dress Design Tool</h1>
+    <div class="design-container" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <img id="dress" src="https://i.imgur.com/Zn0LO8r.png" alt="White Long Sleeved Dress" class="dress-image">
+        <img id="embroidery1" src="https://i.imgur.com/Zm8RGyN.png" class="embroidery" style="top: 50px; left: 110px;" draggable="true" ondragstart="drag(event)">
+        <img id="embroidery2" src="https://i.imgur.com/MB4NeTP.png" class="embroidery" style="top: 200px; left: 110px;" draggable="true" ondragstart="drag(event)">
+    </div>
 
-<audio id="violin">
-  <source src="https://www.soundjay.com/button/button-25.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+    <div class="controls">
+        <h2>Select Embroidery</h2>
+        <img src="https://i.imgur.com/Zm8RGyN.png" alt="Embroidery 1" class="embroidery-option" onclick="addEmbroidery('https://i.imgur.com/Zm8RGyN.png')">
+        <img src="https://i.imgur.com/MB4NeTP.png" alt="Embroidery 2" class="embroidery-option" onclick="addEmbroidery('https://i.imgur.com/MB4NeTP.png')">
+        <button onclick="clearEmbroidery()">Clear Embroidery</button>
+    </div>
 
-<div id="rhythm-container"></div>
+    <script>
+        function addEmbroidery(src) {
+            let container = document.querySelector('.design-container');
+            let img = document.createElement('img');
+            img.src = src;
+            img.className = 'embroidery';
+            img.style.top = '200px';
+            img.style.left = '100px';
+            img.draggable = true;
+            img.ondragstart = drag;
+            container.appendChild(img);
+        }
 
-<a href="#" id="download-link" class="download-link" download="generated_rhythm.txt">Download Rhythm</a>
+        function drag(event) {
+            event.dataTransfer.setData("text/plain", event.target.id);
+        }
 
-<script>
-  let rhythm = [];
+        function drop(event) {
+            event.preventDefault();
+            var data = event.dataTransfer.getData("text");
+            var embroidery = document.getElementById(data);
+            embroidery.style.left = event.offsetX + 'px';
+            embroidery.style.top = event.offsetY + 'px';
+        }
 
-  function addBeat(soundId) {
-    rhythm.push(soundId);
-    displayRhythm();
-  }
+        function allowDrop(event) {
+            event.preventDefault();
+        }
 
-  function displayRhythm() {
-    const rhythmContainer = document.getElementById('rhythm-container');
-    rhythmContainer.innerHTML = rhythm.map(id => `<span>${id}</span>`).join(' ');
-  }
-
-  function generateRhythm() {
-    // Generate rhythm logic (can be more complex depending on your needs)
-    // Here, we're just displaying the current rhythm for demonstration
-
-    // Prepare rhythm data for download
-    const rhythmText = rhythm.join('\n');
-    const blob = new Blob([rhythmText], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-
-    // Update download link
-    const downloadLink = document.getElementById('download-link');
-    downloadLink.href = url;
-
-    // Reset rhythm for next generation
-    rhythm = [];
-    displayRhythm();
-  }
-</script>
+        function clearEmbroidery() {
+            let container = document.querySelector('.design-container');
+            let embroideries = container.querySelectorAll('.embroidery');
+            embroideries.forEach(embroidery => {
+                if (embroidery.id !== 'embroidery1' && embroidery.id !== 'embroidery2') {
+                    container.removeChild(embroidery);
+                }
+            });
+        }
+    </script>
 </body>
 </html>
