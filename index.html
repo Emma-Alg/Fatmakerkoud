@@ -1,133 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Find Doctors</title>
-  <style>
-    /* Basic CSS for styling */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-image: url(https://www.vecteezy.com/photo/23740386-medicine-doctor-with-stethoscope-in-hand-on-hospital-background-medical-technology-healthcare-and-medical-concept'); /* Replace with your actual image URL */
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-    .overlay {
-      background-color: rgba(255, 255, 255, 0.8); /* Example overlay color */
-      padding: 20px;
-      border-radius: 5px;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: rgba(255, 255, 255, 0.8); /* Example overlay color */
-      padding: 20px;
-      border-radius: 5px;
-    }
-    form {
-      margin-bottom: 20px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #f9f9f9;
-    }
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
-    select, input[type="submit"] {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      box-sizing: border-box;
-    }
-    .results {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #f0f0f0;
-    }
-    .doctor {
-      margin-bottom: 10px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Rhythm Generator</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+  }
+  button {
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  .download-link {
+    margin-top: 20px;
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>Find Doctors</h1>
-    <form id="doctorForm">
-      <label for="city">Select City:</label>
-      <select id="city" name="city">
-        <option value="new-york">New York</option>
-        <option value="los-angeles">Los Angeles</option>
-        <!-- Add more options for other cities -->
-      </select>
-      <br>
-      <label for="specialty">Select Specialty:</label>
-      <select id="specialty" name="specialty">
-        <option value="cardiologist">Cardiologist</option>
-        <option value="dermatologist">Dermatologist</option>
-        <option value="pediatrician">Pediatrician</option>
-        <!-- Add more options for other specialties -->
-      </select>
-      <br>
-      <input type="submit" value="Find Doctors">
-    </form>
-    <div class="results" id="doctorResults">
-      <!-- Doctor results will be displayed here -->
-    </div>
-  </div>
+<button onclick="addBeat('piano')">Add Piano Beat</button>
+<button onclick="addBeat('violin')">Add Violin Beat</button>
+<button onclick="generateRhythm()">Generate Rhythm</button>
 
-  <script>
-    // JavaScript for handling form submission and displaying results
-    document.getElementById('doctorForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      const city = document.getElementById('city').value;
-      const specialty = document.getElementById('specialty').value;
-      fetchDoctors(city, specialty);
-    });
+<audio id="piano">
+  <source src="https://www.soundjay.com/button/beep-07.wav" type="audio/wav">
+  Your browser does not support the audio element.
+</audio>
 
-    function fetchDoctors(city, specialty) {
-      // Placeholder function to fetch and display doctors based on city and specialty
-      // This is where you would typically fetch data from a backend or static JSON
-      const doctors = [
-        { name: "Dr. John Doe", specialty: "Cardiologist", contact: "123-456-7890" },
-        { name: "Dr. Jane Smith", specialty: "Cardiologist", contact: "234-567-8901" },
-        { name: "Dr. Emily Johnson", specialty: "Cardiologist", contact: "345-678-9012" },
-        { name: "Dr. Michael Brown", specialty: "Dermatologist", contact: "456-789-0123" },
-        { name: "Dr. Sarah Lee", specialty: "Dermatologist", contact: "567-890-1234" },
-        { name: "Dr. David Clark", specialty: "Pediatrician", contact: "678-901-2345" }
-        // Add more doctors as needed
-      ];
+<audio id="violin">
+  <source src="https://www.soundjay.com/button/button-25.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 
-      // Filter doctors based on selected city and specialty
-      const filteredDoctors = doctors.filter(doctor => doctor.specialty === specialty);
+<div id="rhythm-container"></div>
 
-      // Display filtered doctors in results div
-      const resultsDiv = document.getElementById('doctorResults');
-      resultsDiv.innerHTML = ''; // Clear previous results
+<a href="#" id="download-link" class="download-link" download="generated_rhythm.txt">Download Rhythm</a>
 
-      if (filteredDoctors.length > 0) {
-        filteredDoctors.forEach(doctor => {
-          const doctorDiv = document.createElement('div');
-          doctorDiv.classList.add('doctor');
-          doctorDiv.innerHTML = `<strong>${doctor.name}</strong> (${doctor.specialty}) - ${doctor.contact}`;
-          resultsDiv.appendChild(doctorDiv);
-        });
-      } else {
-        resultsDiv.textContent = 'No doctors found for selected specialty in ' + city;
-      }
-    }
-  </script>
+<script>
+  let rhythm = [];
+
+  function addBeat(soundId) {
+    rhythm.push(soundId);
+    displayRhythm();
+  }
+
+  function displayRhythm() {
+    const rhythmContainer = document.getElementById('rhythm-container');
+    rhythmContainer.innerHTML = rhythm.map(id => `<span>${id}</span>`).join(' ');
+  }
+
+  function generateRhythm() {
+    // Generate rhythm logic (can be more complex depending on your needs)
+    // Here, we're just displaying the current rhythm for demonstration
+
+    // Prepare rhythm data for download
+    const rhythmText = rhythm.join('\n');
+    const blob = new Blob([rhythmText], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+
+    // Update download link
+    const downloadLink = document.getElementById('download-link');
+    downloadLink.href = url;
+
+    // Reset rhythm for next generation
+    rhythm = [];
+    displayRhythm();
+  }
+</script>
 </body>
 </html>
