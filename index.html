@@ -57,14 +57,7 @@
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       animation: fadeIn 0.5s ease-out; /* Example of fading in */
-      display: flex;
-      align-items: center;
-    }
-    section h2 {
-      font-family: 'Barlow Condensed', sans-serif;
-    }
-    .content-toggle {
-      display: none;
+      display: none; /* Hide sections initially */
     }
     .project {
       background-color: #1976d2; /* Dark Blue */
@@ -73,6 +66,7 @@
       margin-bottom: 20px;
       border-radius: 5px;
       display: flex;
+      align-items: center;
     }
     .project img {
       max-width: 100%;
@@ -84,18 +78,54 @@
       color: black;
       flex: 1;
     }
-    .video-container {
-      margin-bottom: 20px;
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
     }
-    .story-content {
-      display: none;
+    .video-container {
+      background-color: #1976d2;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .video-container iframe {
+      width: 100%;
+      height: 200px;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .contact-form button {
+      background-color: #1e88e5;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .contact-form button:hover {
+      background-color: #1976d2;
     }
     footer {
       background-color: #1976d2; /* Dark Blue */
       text-align: center;
       padding: 10px;
+      color: white;
       margin-top: 20px;
-      animation: fadeIn 0.8s ease-out; /* Example of fading in */
     }
     @media (max-width: 768px) {
       nav ul {
@@ -107,7 +137,7 @@
   <script>
     function toggleContent(sectionId) {
       // Hide all sections
-      var sections = document.querySelectorAll('.content-toggle');
+      var sections = document.querySelectorAll('section');
       sections.forEach(function(section) {
         section.style.display = 'none';
       });
@@ -115,7 +145,7 @@
       // Display selected section
       var selectedSection = document.getElementById(sectionId);
       if (selectedSection) {
-        selectedSection.style.display = 'flex';
+        selectedSection.style.display = 'block';
       }
     }
 
@@ -146,7 +176,7 @@
     </ul>
   </nav>
   <main class="container">
-    <section id="stories-poems" class="content-toggle">
+    <section id="stories-poems">
       <h2>Stories and Poems</h2>
       <div class="sub-section">
         <h3>Stories</h3>
@@ -156,4 +186,40 @@
         <div id="story1" class="story-content">
           <div class="project">
             <!-- Image Placeholder -->
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwCAYAAAA+VemSAAAgAElEQVR4Xu2dC3cXV3Xp1dsN5MgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+            <img src="https://cdn.pixabay.com/photo/2017/04/30/18/48/bakery-2274324_1280.jpg" alt="Pastry Girl">
+            <!-- Story Text Placeholder -->
+            <div class="story-text">..In the small, fog-covered town of Hometown, where the cobblestone streets were perpetually damp and the air carried a chill even in the summer, a young woman named Eliza lived in an ivy-clad cottage on the outskirts. Eliza was a beacon of warmth and light, her honey-toned skin glowing with the vitality of youth, and her chestnut hair often tied back in a loose braid that framed her delicate face. Her eyes, a deep, soulful brown, held both kindness and an unspoken sorrow, reflecting the depths of a heart that had given much and received little in return.Eliza shared her life with Braun, a man of thin build and hollow cheeks, whose appearance seemed to reflect a life of unfulfilled potential. Braun’s once-bright eyes were now dulled by the haze of weed smoke and the fog of prescription pills he took to escape the reality he couldn’t face. He had a mop of unruly dark hair that often fell into his eyes, and his clothes hung loosely on his slender frame, a testament to the lack of care he took in his appearance. Unlike many who fall into destructive habits, Braun wasn’t an alcoholic. Instead, he found solace in the soft glow of his laptop screen and the temporary escape provided by his vices.Eliza and Braun had shared three wonderful years together, years filled with laughter, dreams, and the warmth of a love that seemed destined to last. Braun loved Eliza deeply, in his own way. He adored her bright smile, her gentle touch, and the way she could light up a room simply by being in it. Yet, for all his love, Braun was lost in his own world, a world where he didn’t know how to show his feelings or support the woman who had given him so much. He took her for granted, assuming she would always be there, tending to his needs and making their house a home.Eliza earned her living by baking, pouring her heart and soul into every loaf and pastry she crafted in her modest kitchen. The small bakery she owned at the edge of the market square was a haven for the townsfolk, a place where they could find comfort in the sweet, warm treats she made. The air inside was always thick with the scent of fresh bread and sugary confections, and Eliza’s hands were constantly dusted with flour, her face flushed from the heat of the oven and the effort of her labor.While Eliza worked tirelessly to keep their lives together, Braun drifted through his days in a fog. He would spend hours lounging on their sagging sofa, a joint in one hand and a handful of pills in the other, lost in the glow of his laptop or the haze of his mind. He loved Eliza, truly he did, but he couldn’t or wouldn’t show it in the ways that mattered. He didn’t know how to support her dreams, to share her burdens, or even to help with the simplest tasks. In his heart, he believed that love alone was enough, that his feelings were proof of his devotion, and that was all that was required.Eliza’s determination to keep their lives together never wavered, even as her heart grew heavier with each passing day. She loved Braun, but she couldn’t ignore the growing realization that their love alone wasn’t enough to bridge the gap between them. She cooked her pain, her sorrow, and her heartache into her baking, each loaf of bread and each pastry carrying a piece of her wounded soul. Her eyes, once filled with hope and light, now carried a shadow of despair as she struggled to keep up with the demands of her life and her unchanging partner.One cold, drizzly evening, as the rain drummed against the windows and the wind howled through the trees, Eliza returned home soaked to the bone, her dress clinging to her body and her hair plastered to her face. Braun lay sprawled on the sofa, a faint smile playing on his lips as he stared at the ceiling, lost in a drug-induced haze. He looked up as Eliza entered, his eyes glassy and unfocused.“Hey, babe,” he mumbled, a lazy grin spreading across his face. “How was your day?”Eliza stood there, shivering and dripping, and in that moment, she knew she could no longer live like this. She had given Braun everything, and yet he remained lost in his own world, unwilling or unable to change. Her resolve hardened, and she made a decision that would change her life forever.Over the next few weeks, Eliza continued to play her part, smiling sweetly and tending to Braun’s needs, all while plotting her escape. She wore her chameleon mask, hiding her true feelings and intentions, and carefully crafted a plan. She began to set aside small amounts of money, hiding it in the lining of her coat and under the floorboards of her bakery. She knew that she needed to leave, to start anew, and she was determined to do so without leaving a trace.One evening, after Braun had slipped into another drug-induced stupor, Eliza approached him with a smile. “Braun, love,” she said softly, her voice as smooth as honey, “I’ve been thinking about our future. You deserve something more, something better. I’ve saved up some money, and I’d like you to have it. You can start fresh, maybe find a way to fulfill your dreams.”Braun, his mind clouded by the effects of the drugs, eagerly accepted the money without a second thought. He believed Eliza’s words, convinced that she was offering him a chance at a new life, a fresh start. He didn’t notice the way her eyes gleamed with a mix of determination and relief, nor did he question why she would be so eager to give him everything she had saved.The night before she left, Eliza packed her few belongings, carefully placing the money she had saved into a small satchel. She wrote a letter to Braun, a final goodbye that explained her decision to leave, her inability to continue living this way, and her need to find her own path. She placed the letter on the table beside him, where he would see it in the morning.As the first light of dawn began to break through the fog, Eliza slipped out of the cottage, her heart heavy yet strangely light. She walked through the mist-shrouded streets, her steps silent and purposeful. She knew she would never return to Hometown, and she felt no sorrow for what she was leaving behind. She had given Braun every chance, but he had taken her for granted, assuming she would always be there to support him.Braun awoke to find himself alone, his head buzzing with the aftereffects of the drugs. He called out for Eliza, but only the echo of his own voice answered. When he found the letter, his hands trembled, and a cold realization washed over him. He was alone, truly alone, and the woman who had loved him had left without a trace. The money she had given him was gone, and with it, the only person who had ever truly cared for him.Eliza, meanwhile, boarded a train bound for a new town, a place where she could start anew. She felt a strange mix of emotions as she watched the countryside pass by, but she knew she had made the right choice. For the first time in years, she felt free, no longer weighed down by the burden of trying to support a man who had taken her for granted.In the end, Eliza had played her role to perfection. She had worn the snake’s skin, played the part of the devoted partner, and had left without a trace, taking with her the money she had rightfully earned. She had been both the victim and the victor, escaping a life of unfulfilled potential to find her own happiness. And as the train carried her away from the shadows of her past, she looked forward to the brighter future that lay ahead....</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="videos">
+      <h2>Video Editing</h2>
+      <div class="video-grid">
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Video 1"></iframe>
+        </div>
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Video 2"></iframe>
+        </div>
+        <!-- Add more videos as needed -->
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <form class="contact-form">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <textarea placeholder="Message" rows="4" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p>Contact us: email@example.com | Phone: (123) 456-7890</p>
+    <p>&copy; 2024 Kerkoud Fatma. All rights reserved.</p>
+  </footer>
+</body>
+</html>
