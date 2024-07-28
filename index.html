@@ -3,95 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dress Design Tool</title>
+    <title>Emmadz Portfolio</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: white;
         }
-        .design-container {
-            position: relative;
-            width: 300px;
-            height: 500px;
-            border: 1px solid #ddd;
-            background-color: #f9f9f9;
-        }
-        .dress-image {
-            width: 100%;
-            height: auto;
-        }
-        .embroidery {
-            position: absolute;
-            width: 80px;
-            height: auto;
-            cursor: pointer;
-        }
-        .controls {
-            margin-top: 20px;
+        header {
+            background-color: #333;
+            padding: 1em 0;
             text-align: center;
         }
-        .embroidery-option {
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1em;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1em;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        section {
+            padding: 2em;
+            animation: fadeIn 1s;
+        }
+        #about, #stories, #poems, #contact {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .contact-form input, .contact-form textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 1em;
+            padding: 0.5em;
+            border: none;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            padding: 0.5em 2em;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
             cursor: pointer;
-            margin: 5px;
-            width: 80px;
-            height: auto;
+            transition: background 0.3s;
+        }
+        .contact-form button:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
-
-    <h1>Dress Design Tool</h1>
-    <div class="design-container" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <img id="dress" src="https://lh3.googleusercontent.com/pw/ACtC-3cCKvvsuQmepxstZRT02lTExH0jDlT5Ls8D4AKIM4OATybqOXJXbdodR9I6g-8V6NnhAY5XFOp0kHwojFfD2xhGiYBS1kPbFGesbGnYubDw2n6SHHwE=w2400" alt="White Long Sleeved Dress" class="dress-image">
-        <img id="embroidery1" src="https://lh3.googleusercontent.com/pw/ACtC-3f5ThO_GAWIse_B1J9SDouAWC30H00E8doVsX5hNm23GyFaWV0kLCTQ9nQvQnBtt8lvFTzOn9GHLz7ApHEUzJ0X92ZITBSeRsKjLP_3uJr6ZW_zT_8=w2400" class="embroidery" style="top: 50px; left: 110px;" draggable="true" ondragstart="drag(event)">
-    </div>
-
-    <div class="controls">
-        <h2>Select Embroidery</h2>
-        <img src="https://lh3.googleusercontent.com/pw/ACtC-3f5ThO_GAWIse_B1J9SDouAWC30H00E8doVsX5hNm23GyFaWV0kLCTQ9nQvQnBtt8lvFTzOn9GHLz7ApHEUzJ0X92ZITBSeRsKjLP_3uJr6ZW_zT_8=w2400" alt="Embroidery 1" class="embroidery-option" onclick="addEmbroidery('https://lh3.googleusercontent.com/pw/ACtC-3f5ThO_GAWIse_B1J9SDouAWC30H00E8doVsX5hNm23GyFaWV0kLCTQ9nQvQnBtt8lvFTzOn9GHLz7ApHEUzJ0X92ZITBSeRsKjLP_3uJr6ZW_zT_8=w2400')">
-        <button onclick="clearEmbroidery()">Clear Embroidery</button>
-    </div>
-
+    <header>
+        <h1>Emmadz Portfolio</h1>
+    </header>
+    <nav>
+        <a href="#about" onclick="showSection('about')">About Me</a>
+        <a href="#stories" onclick="showSection('stories')">Stories</a>
+        <a href="#poems" onclick="showSection('poems')">Poems</a>
+        <a href="#contact" onclick="showSection('contact')">Contact Us</a>
+    </nav>
+    <section id="about" class="visible">
+        <h2>About Me</h2>
+        <p>Welcome to Emmadz Portfolio! Here you will find a collection of my stories and poems. Feel free to explore and enjoy my creative works.</p>
+    </section>
+    <section id="stories">
+        <h2>Stories</h2>
+        <p>Story 1: Once upon a time...</p>
+        <p>Story 2: In a land far, far away...</p>
+    </section>
+    <section id="poems">
+        <h2>Poems</h2>
+        <p>Poem 1: The sun rises...</p>
+        <p>Poem 2: A gentle breeze...</p>
+    </section>
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form class="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
     <script>
-        function addEmbroidery(src) {
-            let container = document.querySelector('.design-container');
-            let img = document.createElement('img');
-            img.src = src;
-            img.className = 'embroidery';
-            img.style.top = '200px';
-            img.style.left = '100px';
-            img.draggable = true;
-            img.ondragstart = drag;
-            container.appendChild(img);
-        }
-
-        function drag(event) {
-            event.dataTransfer.setData("text/plain", event.target.id);
-        }
-
-        function drop(event) {
-            event.preventDefault();
-            var data = event.dataTransfer.getData("text");
-            var embroidery = document.getElementById(data);
-            embroidery.style.left = event.offsetX + 'px';
-            embroidery.style.top = event.offsetY + 'px';
-        }
-
-        function allowDrop(event) {
-            event.preventDefault();
-        }
-
-        function clearEmbroidery() {
-            let container = document.querySelector('.design-container');
-            let embroideries = container.querySelectorAll('.embroidery');
-            embroideries.forEach(embroidery => {
-                if (embroidery.id !== 'embroidery1') {
-                    container.removeChild(embroidery);
-                }
+        function showSection(id) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('visible');
             });
+            document.getElementById(id).classList.add('visible');
         }
     </script>
 </body>
